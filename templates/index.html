@@ -46,6 +46,22 @@
             <h4 id="nums">{{nums}}</h4>
         </div>
 
+        <div>
+            <div><button onClick="window.location.href='/generateTicket'" class="btn btn-warning">Generate New Ticket</button></div>
+            <hr>
+            <div class="bg-success" style="width:50%">
+                <table class="table table-bordered">
+                    {% for line in ticket %}
+                    <tr>
+                        {% for n in line %}
+                            <td>{{n}}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
     </div>
 </body>
 
