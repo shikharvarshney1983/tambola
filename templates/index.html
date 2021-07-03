@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>Family Tambola</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -14,54 +14,65 @@
 <body>
     <hr>
     <div class="container">
-        <div>
-            <h2>Tambola Number Generator</h2>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <h2>Tambola Number Generator</h2>
+            </div>
         </div>
-        <div>
-            <table class="table table-dark">
-                <tr>
-                    {% for i in range(1,10) %}
+        <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <table class="table table-dark">
+                    <tr>
+                        {% for i in range(1,10) %}
                     <tr>
                         {% for j in range(1,11) %}
                         {% if j + (i-1)*10 in nums %}
                         <td class="bg-danger">
-                        {% else %}
+                            {% else %}
                         <td>
-                        {%- endif -%}
-                        {{ j + (i-1)*10}}</td>
+                            {%- endif -%}
+                            {{ j + (i-1)*10}}</td>
                         {% endfor %}
                     </tr>
                     {% endfor %}
-                </tr>
-            </table>
-        </div>
-        <div>
-            <form action="/next" method="post">
-                <button name="forwardBtn" type="submit" class="btn btn-primary">Generate Next Number</button>
-            </form>
-            <button onclick="window.location.href='/startnew'" class="btn btn-success">Start New Game</button>
-        </div>
-        <div>
-            <h3>Sequence of numbers being called</h3>
-            <h4 id="nums">{{nums}}</h4>
-        </div>
-
-        <div>
-            <div><button onClick="window.location.href='/generateTicket'" class="btn btn-warning">Generate New Ticket</button></div>
-            <hr>
-            <div class="bg-success" style="width:50%">
-                <table class="table table-bordered">
-                    {% for line in ticket %}
-                    <tr>
-                        {% for n in line %}
-                            <td>{{n}}</td>
-                        {% endfor %}
                     </tr>
-                    {% endfor %}
                 </table>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <form action="/next" method="post">
+                    <button name="forwardBtn" type="submit" class="btn btn-primary">Generate Next Number</button>
+                </form>
+            </div>
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <button onclick="window.location.href='/startnew'" class="btn btn-success">Start New Game</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <h3>Sequence of numbers being called</h3>
+                <h4 id="nums">{{nums}}</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4 col-xl-3">
+                <div><button onClick="window.location.href='/generateTicket'" class="btn btn-warning">Generate New
+                        Ticket</button></div>
+                <hr>
+                <div style="width:50%">
+                    <table class="table table-bordered bg-success" id="ticketTable">
+                        {% for line in ticket %}
+                        <tr>
+                            {% for n in line %}
+                            <td onclick="javascript:this.style.background = 'red';">{{n}}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>  
+        </div>
     </div>
 </body>
 
